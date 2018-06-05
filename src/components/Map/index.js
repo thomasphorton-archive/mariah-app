@@ -4,8 +4,8 @@ import mapboxgl from 'mapbox-gl';
 mapboxgl.accessToken = 'pk.eyJ1IjoidGhvbWFzcGhvcnRvbiIsImEiOiJjamMyd2djbDcwNWl5MnFueWtqcHYzaXlsIn0.WGRPx9lQwo74r15YW_QVvA';
 
 var divStyle = {
-  height: "100vh",
-  width: "100vw"
+  minHeight: "400px",
+  width: "100%"
 };
 
 class Map extends Component {
@@ -13,27 +13,21 @@ class Map extends Component {
   constructor(props) {
     super(props);
 
-    console.log('map constructor props:', props);
-
     this.state = {
       data: props.data,
       center: props.center
-    }
-
-    console.log('map:', this.state);
+    };
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(this.props.data);
-    console.log('should update?', nextProps.data);
-    console.log(this.props.data !== nextProps.data);
     return this.props.data !== nextProps.data
   }
 
   componentDidMount() {
-    let center = [0, 0];
 
-    console.log('did mount', this.state);
+    console.log(this.mapContainer);
+
+    let center = [0, 0];
 
     if (this.state.center) {
       center = [this.state.center.lon, this.state.center.lat];
@@ -53,14 +47,24 @@ class Map extends Component {
         'source': {
           'type': 'geojson',
           'data': this.state.data
+        },
+        'layout': {
+          'line-join': 'round',
+          'line-cap': 'round'
+        },
+        'paint': {
+          'line-color': '#888',
+          'line-width': 8
         }
       });
     })
+
+    this.map.resize();
   }
 
   render() {
     return (
-      <div>
+      <div className="mapContainer">
         <div ref={el => this.mapContainer = el} style={divStyle}/>
       </div>
     );

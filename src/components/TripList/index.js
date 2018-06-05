@@ -18,12 +18,27 @@ class TripList extends Component {
       .then(data => {
 
         let trips = data.map((trip) => {
+          let time = new Date(trip.ts);
+          let dateStringOptions = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          };
+
+          let timeString = time.toLocaleTimeString('en-US');
+          let dateString = time.toLocaleDateString('en-Us', dateStringOptions);
+
           return(
-            <li key={trip.tripId}>
+            <section
+              className="trip"
+              key={trip.tripId}>
               <Link to={{
                 pathname: `/trip/${trip.tripId}`
-              }}>{trip.tripId}</Link>
-            </li>
+              }}>
+                <h2 className="post-title">{dateString} - {timeString}</h2>
+              </Link>
+            </section>
           )
         });
 
@@ -36,10 +51,9 @@ class TripList extends Component {
 
   render() {
     return (
-      <div>
-        <ul>
-          {this.state.trips}
-        </ul>
+      <div className="trips">
+        <h1 className="content-subhead">Recent Trips</h1>
+        {this.state.trips}
       </div>
     );
   }
