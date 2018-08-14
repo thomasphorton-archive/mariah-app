@@ -11,7 +11,7 @@ class TripList extends Component {
   }
 
   componentWillMount() {
-    fetch('http://localhost:3001/trips')
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/trips`)
       .then(results => {
         return results.json();
       })
@@ -37,6 +37,7 @@ class TripList extends Component {
                 pathname: `/trip/${trip.tripId}`
               }}>
                 <h2 className="post-title">{dateString} - {timeString}</h2>
+                <p className="post-meta">{trip.tripId}</p>
               </Link>
             </section>
           )

@@ -11,7 +11,7 @@ class Trip extends Component {
   }
 
   componentWillMount() {
-    fetch(`http://localhost:3001/trip/${this.state.tripId}`)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/trip/${this.state.tripId}`)
       .then(results => {
         return results.json();
       })
