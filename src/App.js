@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, Switch, Route } from 'react-router-dom';
 import TripList from './components/TripList';
 import Trip from './components/Trip';
+import CurrentTrip from './components/CurrentTrip';
 
 import './App.css';
 
@@ -31,6 +32,12 @@ const Sidebar = () => (
             }}
             className="pure-button">Past Trips</Link>
           </li>
+          <li className="nav-item">
+            <Link to={{
+              pathname: `/current`
+            }}
+            className="pure-button">Current Trip</Link>
+          </li>
         </ul>
       </nav>
     </div>
@@ -43,6 +50,7 @@ const Main = () => (
       <Route exact path='/' component={TripList}/>
       <Route path='/trips' component={TripList}/>
       <Route path='/trip/:tripId' component={Trip} />
+      <Route path='/current' component={CurrentTrip} />
     </Switch>
   </main>
 )
