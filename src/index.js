@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 
-import './grids-responsive.css';
-import './blog.css';
-import './index.css';
+// import './grids-responsive.css';
+// import './blog.css';
+// import './index.css';
 
 import App from './App';
 

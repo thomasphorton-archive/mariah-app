@@ -4,7 +4,7 @@ import TripList from './components/TripList';
 import Trip from './components/Trip';
 import CurrentTrip from './components/CurrentTrip';
 
-import './App.css';
+// import './App.css';
 
 const App = () => (
   <div className="pure-g">
