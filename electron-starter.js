@@ -16,9 +16,10 @@ let mainWindow;
 function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({width: 800, height: 600});
+    mainWindow.setMenu(null);
 
     // and load the index.html of the app.
-    mainWindow.loadURL('http://localhost:3000');
+    mainWindow.loadURL('http://192.168.1.111:3000');
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
